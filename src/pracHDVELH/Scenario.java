@@ -15,13 +15,24 @@ public class Scenario {
 	private Event head;
 	private GUIManager gui;
 
+
 	/* TO BE COMPLETED */
 	public Scenario(GUIManager gui, Event startEvent){
 		this.head = startEvent;
 		this.gui = gui;
 	}
 
-	public String run(){}
+	public String run(){
+		if(head == null) return MSG_EMPTY_SCENARIO;
+		while(true) {
+			head = head.run();
+			if(head == null)return MSG_EMPTY_SCENARIO;
+			if(!head.hasDaughters()){
+				gui.output(head.getData());
+				return MSG_FINALE;
+			}
+		}
+	}
 
 
 	/* MAIN */

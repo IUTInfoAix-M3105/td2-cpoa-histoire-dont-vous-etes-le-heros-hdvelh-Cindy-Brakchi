@@ -18,10 +18,32 @@ public class Event extends NodeMultiple {
 	public static final String PROMPT_ANSWER = "Answer: ";
 	public static final String WARNING_MSG_INTEGER_EXPECTED = "Please input a integer within range!";
 
-	public Event(GUIManager gui, String text){}
+
+	private String unText;
+	private GUIManager gui;
+
+	public Event(GUIManager gui, String text){
+		text = unText;
+		this.gui = gui;
+
+	}
 	/**
 	 * @return the playerAnswer
 	 */
+
+	public String run(){
+		if (!this.hasDaughters()){
+			return this.getData();
+		}
+		else{
+			//System.out.println(getData()); //Show current event
+			gui.outputln(this.unText);
+			Scanner scan = gui.getInputReader();
+			int a;
+			a = scan.nextInt();
+
+	}
+
 	public String getPlayerAnswer() {
 		/* TO BE COMPLETED */
 	}
@@ -66,7 +88,7 @@ public class Event extends NodeMultiple {
 	 * @see pracHDVELH.NodeMultiple#getData()
 	 */
 	public String getData() {
-		/* TO BE COMPLETED */
+		return this.unText;
 	}
 
 	/**
